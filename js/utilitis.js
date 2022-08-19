@@ -1,6 +1,6 @@
 //get quantity input value
-function getInputQuantity(isValue){
-    const getInputElement = document.getElementById('phone-quantity');
+function getInputQuantity(isValue, quantity){
+    const getInputElement = document.getElementById(quantity);
     const getInputString = getInputElement.value;
     const getInputValue = parseFloat(getInputString);
 
@@ -16,16 +16,57 @@ function getInputQuantity(isValue){
     return totalQuantity;
 }
 
-//update total
+//update phone total
 function updateTotal (getQuantity){
-    const totalValue = getQuantity * 500;
-    const restTotalElment = document.getElementById('phone-total');
+        const totalValue = getQuantity * 501;
+        const restTotalElment = document.getElementById('phone-total');
+        restTotalElment.innerText = totalValue;
+    
+}
+
+//update case total
+
+function updateCaseTotal (getQuantity){
+    const totalValue = getQuantity * 200;
+    const restTotalElment = document.getElementById('case-total');
     restTotalElment.innerText = totalValue;
+
 }
 
 
+//
+function subTotal(productTotal){
+    // get product total
+   const getTotalElement = document.getElementById(productTotal);
+   const getTotalString = getTotalElement.innerText;
+   const getTotalValue = parseInt(getTotalString);
+   return getTotalValue;
+}
 
+// set sub total and tax total
+function setElement (elementId, totalAmount){
+    const TotalElement = document.getElementById(elementId)
+    TotalElement.innerText = totalAmount;
+}
 
+// calculat sub total
+function calculateSubTotal(){
+    const phoneTotalAmount = subTotal('phone-total');
+   const caseTotalAmount = subTotal('case-total');
+   const subTotalAmount = phoneTotalAmount + caseTotalAmount;
+
+   setElement ('sub-total', subTotalAmount)
+   
+
+   //set tax
+   const taxAmountstring = (subTotalAmount * 0.1).toFixed(2);
+   const taxAmount =parseFloat(taxAmountstring);
+   setElement('tax', taxAmount);
+
+   //set main total
+   const mainTotal = subTotalAmount + taxAmount;
+   setElement('main-total', mainTotal)
+}
 
 
 

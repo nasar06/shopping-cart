@@ -2,19 +2,26 @@
 
 //event handaler btn minus 
 document.getElementById('btn-minus').addEventListener('click', function(){
-    const getQuantity = getInputQuantity(false);
+    //get quantity
+    const getQuantity = getInputQuantity(false, 'phone-quantity');
 
     //update total value
-   updateTotal(getQuantity);
+   const updateTotalValue = updateTotal(getQuantity);
+
    
+    //update sub total
+    calculateSubTotal();
 })
 
-//event handaler btn minus 
+//event handaler btn plus 
 document.getElementById('btn-plus').addEventListener('click', function(){
-    const getQuantity = getInputQuantity(true);
+    const getQuantity = getInputQuantity(true, 'phone-quantity');
 
     //update total value
    updateTotal(getQuantity);
+
+   //update sub total
+   calculateSubTotal();
 })
 
 
